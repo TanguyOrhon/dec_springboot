@@ -21,8 +21,15 @@ public class GameCharacterController {
         this.gameCharacterService.createGameCharacter(gamecharacter);
     }
 
-    @GetMapping
-    public void getGameCharacter() {
+    @ResponseStatus(value = HttpStatus.OK)
+    @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
+    public GameCharacter getGameCharacter(@PathVariable int id) {
+        return this.gameCharacterService.getGameCharacter(id);
+    }
 
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @DeleteMapping(path = "/{id}")
+    public void deleteGameCharacter(@PathVariable int id) {
+        this.gameCharacterService.deleteGameCharacter(id);
     }
 }
